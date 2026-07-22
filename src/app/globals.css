@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-red: #d71920;
+  --brand-charcoal: #15181d;
+  --brand-offwhite: #f7f6f2;
+  --brand-grey: #6d7278;
+  --brand-border: #e5e5e5;
+  --brand-gold: #b69a72;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  @apply bg-white font-body text-brand-ink antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--brand-red);
+  color: #fff;
+}
+
+/* Visible focus states */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Blueprint-inspired grid backdrop */
+.blueprint-grid {
+  background-image: linear-gradient(rgba(21, 24, 29, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 24, 29, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.blueprint-grid-dark {
+  background-image: linear-gradient(rgba(247, 246, 242, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 246, 242, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Fine red annotation line used under section labels */
+.annotation-line {
+  position: relative;
+  padding-left: 2.75rem;
+}
+.annotation-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 2rem;
+  height: 1px;
+  background: var(--brand-red);
+}
+
+/* Editorial oversized section numbers */
+.section-number {
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 1;
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--brand-border);
+  user-select: none;
+}
+
+/* Scroll cue */
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+.scroll-cue-dot {
+  animation: scroll-cue 2s ease-in-out infinite;
+}
+
+/* Hide scrollbar on filter rows while keeping scrollability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
