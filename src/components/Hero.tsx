@@ -7,7 +7,7 @@ export default function Hero() {
       {/* Background image */}
       <Image
         src="/projects/hero.webp"
-        alt="Evening design visualization of a contemporary luxury residence designed by Vastukala Associates at Sanaswadi, Pune"
+        alt="Aerial design visualization of a multi-storey apartment development by Vastukala Associates, set along a tree-lined highway"
         fill
         priority
         sizes="100vw"

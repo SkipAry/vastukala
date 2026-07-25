@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { clients, stats } from "@/data/site";
+import { stats } from "@/data/site";
+import ClientMarquee from "./ClientMarquee";
 
 /** Animated counter that respects prefers-reduced-motion. */
 function Counter({ value, suffix }: { value: number; suffix: string }) {
@@ -65,22 +66,8 @@ export default function TrustBar() {
           ))}
         </dl>
 
-        {/* Client strip — names from the official Vastukala portfolio */}
-        <div className="border-t border-brand-border py-8">
-          <p className="mb-5 text-center text-[11px] font-medium uppercase tracking-caps text-brand-grey">
-            Trusted by clients including
-          </p>
-          <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:gap-x-12">
-            {clients.map((client) => (
-              <li
-                key={client}
-                className="font-heading text-sm font-bold uppercase tracking-wider text-brand-grey/70 md:text-base"
-              >
-                {client}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Client logo marquee — row 1 scrolls left, row 2 right */}
+        <ClientMarquee />
       </div>
     </section>
   );

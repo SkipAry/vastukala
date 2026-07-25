@@ -52,24 +52,35 @@ export const telLink = `tel:${site.phoneE164}`;
 
 /* ── Statistics (verified company figures only) ─────────────── */
 export const stats = [
-  { value: 1000, suffix: "+", label: "Projects Designed & Executed" },
+  { value: 1500, suffix: "+", label: "Projects Designed & Executed" },
   { value: 15, suffix: "+", label: "States & Regions Served" },
   { value: 8, suffix: "", label: "Specialists on the Core Team" },
   { value: 5, suffix: "", label: "Services Under One Roof" },
 ];
 
-/* ── Client names (from the official Vastukala portfolio) ───── */
-export const clients = [
-  "John Deere",
-  "Magarpatta City",
-  "Duroshox",
-  "Rosmerta Technologies",
-  "Victora Group",
-  "Shreeram Developers",
-  "Somnath Realty",
-  "Sundaram Construction",
-  "Abiel Landmarks",
-  "JB Group",
+/* ── Client logos (files in public/clients/) ────────────────────
+   Shown as a two-row scrolling marquee. Row 1 scrolls left,
+   row 2 scrolls right. Add or remove entries freely.           */
+export type ClientLogo = { name: string; logo: string };
+
+export const clientsRow1: ClientLogo[] = [
+  { name: "John Deere", logo: "/clients/john-deere.webp" },
+  { name: "Magarpatta City", logo: "/clients/magarpatta-city.webp" },
+  { name: "Duroshox", logo: "/clients/duroshox.webp" },
+  { name: "Rosmerta Technologies", logo: "/clients/rosmerta.webp" },
+  { name: "Shreeram Developers", logo: "/clients/shreeram-developers.webp" },
+  { name: "Somnath Realty", logo: "/clients/somnath-realty.webp" },
+  { name: "JB Group of Companies", logo: "/clients/jb-group.webp" },
+];
+
+export const clientsRow2: ClientLogo[] = [
+  { name: "Prathamesh Aura", logo: "/clients/prathamesh-aura.webp" },
+  { name: "Arambha Properties & Construction", logo: "/clients/arambha-properties.webp" },
+  { name: "Dnyanraj Building Construction", logo: "/clients/dnyanraj-construction.webp" },
+  { name: "Sai Inficon Consultants", logo: "/clients/sai-inficon.webp" },
+  { name: "B&T General Contraction", logo: "/clients/bt-contraction.webp" },
+  { name: "Kekiz — The Cake Shop", logo: "/clients/kekiz.webp" },
+  { name: "BJ", logo: "/clients/bj-jewellers.webp" },
 ];
 
 /* ── Services ───────────────────────────────────────────────── */
