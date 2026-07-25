@@ -17,15 +17,19 @@ type Filter = "All" | ProjectCategory;
 export default function Projects() {
   const [filter, setFilter] = useState<Filter>("All");
   const [openProject, setOpenProject] = useState<Project | null>(null);
+  const [galleryIndex, setGalleryIndex] = useState(0);
   const dialogRef = useRef<HTMLDivElement>(null);
   const lastTrigger = useRef<HTMLElement | null>(null);
 
   const visible =
     filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
+  const gallery = openProject ? [openProject.image, ...(openProject.images ?? [])] : [];
+
   const openModal = useCallback((project: Project, trigger: HTMLElement) => {
     lastTrigger.current = trigger;
     setOpenProject(project);
+    setGalleryIndex(0);
     trackEvent("project_open", { project: project.id });
   }, []);
 
@@ -34,13 +38,23 @@ export default function Projects() {
     lastTrigger.current?.focus();
   }, []);
 
-  // Modal accessibility: Escape to close, focus containment, scroll lock
+  const showPrev = useCallback(() => {
+    setGalleryIndex((i) => (i - 1 + gallery.length) % gallery.length);
+  }, [gallery.length]);
+
+  const showNext = useCallback(() => {
+    setGalleryIndex((i) => (i + 1) % gallery.length);
+  }, [gallery.length]);
+
+  // Modal accessibility: Escape to close, arrow keys for gallery, focus containment, scroll lock
   useEffect(() => {
     if (!openProject) return;
     const dialog = dialogRef.current;
     dialog?.querySelector<HTMLElement>("button")?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowLeft" && gallery.length > 1) showPrev();
+      if (e.key === "ArrowRight" && gallery.length > 1) showNext();
       if (e.key === "Tab" && dialog) {
         const focusables = dialog.querySelectorAll<HTMLElement>(
           'button, [href], [tabindex]:not([tabindex="-1"])'
@@ -62,7 +76,7 @@ export default function Projects() {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [openProject, closeModal]);
+  }, [openProject, closeModal, gallery.length, showPrev, showNext]);
 
   return (
     <section id="projects" className="bg-brand-charcoal py-16 md:py-28">
@@ -179,15 +193,53 @@ export default function Projects() {
             className="relative max-h-[92dvh] w-full max-w-4xl overflow-y-auto bg-white"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative aspect-[16/10] w-full">
+            <div className="relative aspect-[16/10] w-full bg-brand-charcoal">
               <Image
-                src={openProject.image}
-                alt={openProject.alt}
+                src={gallery[galleryIndex]}
+                alt={
+                  galleryIndex === 0
+                    ? openProject.alt
+                    : `${openProject.alt} — additional view ${galleryIndex + 1}`
+                }
                 fill
                 sizes="(min-width: 1024px) 56rem, 100vw"
                 className="object-cover"
                 priority
               />
+              {gallery.length > 1 ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={showPrev}
+                    aria-label="Previous photo"
+                    className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-brand-charcoal/70 text-lg text-white transition-colors hover:bg-brand-red"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    type="button"
+                    onClick={showNext}
+                    aria-label="Next photo"
+                    className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-brand-charcoal/70 text-lg text-white transition-colors hover:bg-brand-red"
+                  >
+                    ›
+                  </button>
+                  <div className="absolute inset-x-0 bottom-3 flex items-center justify-center gap-2">
+                    {gallery.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setGalleryIndex(i)}
+                        aria-label={`Show photo ${i + 1} of ${gallery.length}`}
+                        aria-current={i === galleryIndex}
+                        className={`h-2 w-2 rounded-full transition-colors ${
+                          i === galleryIndex ? "bg-white" : "bg-white/40 hover:bg-white/70"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </>
+              ) : null}
             </div>
             <div className="flex flex-wrap items-center justify-between gap-4 p-5 md:p-6">
               <div>

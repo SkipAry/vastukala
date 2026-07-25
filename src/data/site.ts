@@ -152,6 +152,8 @@ export type Project = {
   category: ProjectCategory;
   location: string;
   image: string;
+  /** Additional photos of the same project, browsable in the project modal. */
+  images?: string[];
   alt: string;
   size: "wide" | "tall" | "standard";
 };
@@ -292,6 +294,61 @@ export const projects: Project[] = [
     image: "/projects/interior-bedroom.webp",
     alt: "Interior design visualization of a master bedroom suite with warm material palette",
     size: "standard",
+  },
+  {
+    id: "maitri-mansions",
+    title: "Maitri Mansions",
+    category: "Residential",
+    location: "Pune, Maharashtra",
+    image: "/projects/maitri-mansions-front.webp",
+    images: ["/projects/maitri-mansions-aerial.webp"],
+    alt: "Design visualization of the Maitri Mansions apartment building in Pune, Maharashtra",
+    size: "standard",
+  },
+  {
+    id: "ujwalswapn-apartment",
+    title: "Ujwalswapn Apartment",
+    category: "Residential",
+    location: "Pune, Maharashtra",
+    image: "/projects/ujwalswapn-apartment-dusk.webp",
+    images: [
+      "/projects/ujwalswapn-apartment-front.webp",
+      "/projects/ujwalswapn-apartment-aerial.webp",
+    ],
+    alt: "Evening design visualization of the Ujwalswapn Apartment building with ground-floor retail in Pune, Maharashtra",
+    size: "wide",
+  },
+  {
+    id: "pune-residence-tower",
+    title: "Contemporary Residence",
+    category: "Residential",
+    location: "Pune, Maharashtra",
+    image: "/projects/pune-residence-tower.webp",
+    alt: "Design visualization of a contemporary multi-storey residence in Pune, Maharashtra",
+    size: "tall",
+  },
+  {
+    id: "pune-shop-apartments",
+    title: "Apartments with Retail Shops",
+    category: "Residential",
+    location: "Pune, Maharashtra",
+    image: "/projects/pune-shop-apartments-dusk.webp",
+    images: ["/projects/pune-shop-apartments-aerial.webp"],
+    alt: "Evening design visualization of an apartment building with ground-floor retail shops in Pune, Maharashtra",
+    size: "wide",
+  },
+  {
+    id: "aj-developers-warehouse",
+    title: "Industrial Warehouse, AJ Developers",
+    category: "Industrial",
+    location: "Pune, Maharashtra",
+    image: "/projects/aj-developers-warehouse-aerial-top.webp",
+    images: [
+      "/projects/aj-developers-warehouse-aerial-oblique.webp",
+      "/projects/aj-developers-warehouse-facade.webp",
+    ],
+    alt: "Top-down aerial design visualization of the AJ Developers industrial warehouse in Pune, Maharashtra",
+    size: "wide",
   },
 ];
 
