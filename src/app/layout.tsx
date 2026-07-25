@@ -57,6 +57,7 @@ export const metadata: Metadata = {
     images: ["/projects/hero.webp"],
   },
   robots: { index: true, follow: true },
+  verification: { google: "_o_tIIAIxNnUQWghYzty8hQDk4m-xzARI_wNKbXGkwo" },
 };
 
 export const viewport: Viewport = {
