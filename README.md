@@ -25,10 +25,12 @@ official Vastukala portfolio book).
 
 ## Before launch checklist
 
-1. **Form delivery** — `src/app/api/inquiry/route.ts` validates and
-   accepts inquiries but currently only logs them. Wire it to an email
-   service (Resend / SendGrid / SES) or CRM webhook. Keep API keys in
-   environment variables; never commit them.
+1. **Form delivery** — the contact form submits directly to Formspree
+   (`site.formEndpoint` in `site.ts`), since this site is statically
+   exported (`output: "export"` in `next.config.ts`) and can't run
+   Next.js API routes. Manage submissions/notification email at
+   formspree.io. If the Formspree free tier's monthly submission limit
+   becomes a problem, upgrade the plan or switch providers.
 2. **Testimonials** — the section is CMS-ready but intentionally empty.
    Add only genuine, verified client testimonials in `src/data/site.ts`
    (`testimonials` array). The section appears automatically once

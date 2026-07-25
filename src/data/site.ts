@@ -16,6 +16,7 @@ export const site = {
   whatsappMessage:
     "Hello Vastukala Associates, I would like to discuss a project. My project type is ______ and the location is ______.",
   email: "", // add official email when available
+  formEndpoint: "https://formspree.io/f/mvzevdke",
   address: {
     line1: "2nd Floor, Above Baba Jewellers, Baba Complex",
     line2: "Talegaon–Shikrapur Road, Shikrapur",

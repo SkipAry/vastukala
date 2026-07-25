@@ -55,9 +55,16 @@ export default function Contact() {
     setStatus("submitting");
     setErrorMsg("");
     try {
-      const res = await fetch("/api/inquiry", { method: "POST", body: data });
-      const json = await res.json();
-      if (!res.ok || !json.ok) throw new Error(json.error || "Submission failed");
+      const res = await fetch(site.formEndpoint, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) {
+        const json = await res.json().catch(() => null);
+        const message = json?.errors?.map((e: { message: string }) => e.message).join(", ");
+        throw new Error(message || "Submission failed");
+      }
       setStatus("success");
       trackEvent("form_submit_success", {
         projectType: String(data.get("projectType") || ""),
@@ -124,13 +131,13 @@ export default function Contact() {
                 className="mt-10 grid gap-5 sm:grid-cols-2"
                 noValidate={false}
               >
-                {/* Honeypot — hidden from real users, catches bots */}
+                {/* Honeypot — hidden from real users; Formspree silently discards submissions where this is filled */}
                 <div className="hidden" aria-hidden="true">
                   <label htmlFor="company">Company</label>
                   <input
                     type="text"
                     id="company"
-                    name="company"
+                    name="_gotcha"
                     tabIndex={-1}
                     autoComplete="off"
                   />
