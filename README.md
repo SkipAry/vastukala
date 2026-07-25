@@ -44,7 +44,7 @@ official Vastukala portfolio book).
 7. **Analytics** — CTA clicks and form submissions already push events
    to `window.dataLayer` (see `src/lib/analytics.ts`). Add your GTM/GA4
    snippet in `src/app/layout.tsx` to collect them.
-8. **Domain** — the canonical URL is set to `https://vastukalaassociates.com`
+8. **Domain** — the canonical URL is set to `https://vastukalaassociates.in`
    in `site.ts`; update if the domain changes.
 
 ## Content integrity notes

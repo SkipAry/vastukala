@@ -9,7 +9,7 @@
 export const site = {
   name: "Vastukala Associates",
   tagline: "Architecture | Interior | Structural Consultancy",
-  url: "https://vastukalaassociates.com",
+  url: "https://vastukalaassociates.in",
   phoneDisplay: "+91 96045 96536",
   phoneE164: "+919604596536",
   whatsappNumber: "919604596536",
