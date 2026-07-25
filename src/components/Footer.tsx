@@ -13,8 +13,6 @@ const navLinks = [
 export default function Footer() {
   const year = new Date().getFullYear();
   const socials = [
-    { label: "Instagram", href: site.social.instagram },
-    { label: "Facebook", href: site.social.facebook },
     { label: "YouTube", href: site.social.youtube },
     { label: "LinkedIn", href: site.social.linkedin },
   ].filter((s) => s.href);
