@@ -2,6 +2,7 @@ import Image from "next/image";
 import { site } from "@/data/site";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import StudioVideo from "./StudioVideo";
 import TrackedLink from "./TrackedLink";
 
 const tailoredTo = [
@@ -95,6 +96,17 @@ export default function About() {
             </figure>
           </Reveal>
         </div>
+
+        {/* Studio video */}
+        <Reveal delay={0.1} className="mt-16 md:mt-20">
+          <p className="text-[11px] font-semibold uppercase tracking-caps text-brand-red">
+            Inside the Studio
+          </p>
+          <h3 className="mt-2 font-heading text-2xl font-bold text-brand-charcoal md:text-3xl">
+            Where Every Design Begins
+          </h3>
+          <StudioVideo />
+        </Reveal>
       </div>
     </section>
   );
